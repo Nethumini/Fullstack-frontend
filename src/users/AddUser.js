@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function AddUser() {
 
-    let navigate=useNavigate()
+    let navigate = useNavigate();
+
 
     const [user,setUser]=useState({
         name: "",
@@ -12,15 +14,16 @@ export default function AddUser() {
         email: ""
     });
 
-    const{name,username,email}=user
+    const{name,username,email}= user;
 
     const onInputChange = (e) => {
-        setUser({...user, [e.target.name]:e.target.value})
+        setUser({...user, [e.target.name]:e.target.value});
     };
 
     const onSubmit= async(e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/user", user);
+        await axios.post("http://localhost:8080/user", user)
+        navigate("/")
     };
 
   return (
@@ -38,7 +41,7 @@ export default function AddUser() {
             type="text"
             className="form-control"
             placeholder="Enter your name"
-            id="Name"
+            name='name'
             value={name}
             onChange={(e)=> onInputChange(e)}
           />
@@ -52,7 +55,7 @@ export default function AddUser() {
             type="text"
             className="form-control"
             placeholder="Enter your username"
-            id="Username"
+            name='username'
             value={username}
             onChange={(e)=> onInputChange(e)}
           />
@@ -66,19 +69,19 @@ export default function AddUser() {
             type="text"
             className="form-control"
             placeholder="Enter your email address"
-            id="email"
+            name="email"
             value={email}
             onChange={(e)=> onInputChange(e)}
           />
         </div>
 
-        <button type="submit" className="btn btn-outline-primary mx-2 px-2">
+        <button className="btn btn-outline-primary mx-2 px-2" to="/">
          Submit   
          </button>
 
-         <button type="submit" className="btn btn-outline-danger mx-2 px-2">
-         Cancel   
-         </button>
+         <Link to="/" className="btn btn-outline-danger mx-2 px-2">
+         Cancel
+         </Link>
          </form>
       </div>
     </div>
