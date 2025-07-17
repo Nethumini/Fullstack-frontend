@@ -79,9 +79,7 @@ export default function AddUser() {
          Submit   
          </button>
 
-         <Link to="/" className="btn btn-outline-danger mx-2 px-2">
-         Cancel
-         </Link>
+         
          </form>
       </div>
     </div>
